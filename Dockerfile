@@ -1,25 +1,22 @@
-# 1. ベースイメージの指定
-# Pythonの公式イメージを使用します。軽量な-slim版がおすすめです。
-FROM python:3.11-slim
+FROM python:3.11
+WORKDIR /bot
 
-# 2. コンテナ内の作業ディレクトリを設定
-# これ以降のコマンドはこのディレクトリで実行されます。
-WORKDIR /app
+# 更新・日本語化
+RUN apt-get update && apt-get -y install locales && apt-get -y upgrade && \
+	localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+ENV LANG ja_JP.UTF-8
+ENV LANGUAGE ja_JP:ja
+ENV LC_ALL ja_JP.UTF-8
+ENV TZ Asia/Tokyo
+ENV TERM xterm
 
-# 3. 依存関係のファイルをコピー
-# まず、requirements.txtだけをコピーします。
-# こうすることで、依存関係に変化がない限り、このレイヤーのキャッシュが再利用され、ビルドが速くなります。
-COPY requirements.txt .
+# pip install
+COPY requirements.txt /bot/
+RUN pip install -r requirements.txt
+COPY . /bot
 
-# 4. 依存関係のインストール
-# requirements.txtに書かれたライブラリをインストールします。
-RUN pip install --no-cache-dir -r requirements.txt
+# ポート開放 (uvicornで指定したポート)
+EXPOSE 8080
 
-# 5. プロジェクトのすべてのファイルをコピー
-# 依存関係のインストール後に、Botのコードを含むすべてのファイルをコピーします。
-COPY . .
-
-# 6. コンテナが起動したときに実行するコマンドを指定
-# コンテナが立ち上がった際に、Botのスクリプトを実行するコマンドです。
-# "bot.py" の部分は、あなたのBotのメインのファイル名に置き換えてください。
-CMD ["python", "disc_bot_1.py"]
+# 実行
+CMD python app/disc_bot_1.py
