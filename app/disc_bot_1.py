@@ -62,19 +62,20 @@ async def on_message(message):
         "お呼びですにょ。",
         "お呼びですぞ。"
     ]
-    w = [30,1,1]
+    w = [100,1,1]
     bot_message = random.choices(message_list, weights = w)[0]
 
     #botメッセージの送信
     if 'たいぼ' in message.content:
-        await message.channel.send(f'<@&{1394305314106380338}>{bot_message}')
+        await message.channel.send(f'<@&{958916165479047209}>{bot_message}')
     elif '対募' in message.content:
-        await message.channel.send(f'<@&{1394305314106380338}>{bot_message}')
+        await message.channel.send(f'<@&{958916165479047209}>{bot_message}')
     elif '募集' in message.content:
-        await message.channel.send(f'<@&{1394305314106380338}>{bot_message}')
+        await message.channel.send(f'<@&{958916165479047209}>{bot_message}')
 
     await bot.process_commands(message) 
     
 
 # ボットを実行
+
 bot.run(TOKEN)
