@@ -13,6 +13,7 @@ def getRate(player):
                     "k-z":"https://smashmate.net/user/27914/?ts={int(time.time())}",
                     "k-zサブ":"https://smashmate.net/user/118406/?ts={int(time.time())}",
                     "ナカ":"https://smashmate.net/user/51055/?ts={int(time.time())}",
+                    "まよまよ":"https://smashmate.net/user/132494/?ts={int(time.time())}"
                     }
     url = player_list[player]
 
@@ -44,3 +45,4 @@ def getRate(player):
         return(now_rate[0], max_rate[0]) 
     else:
         print(f'ページの取得に失敗しました。ステータスコード: {response.status_code}')
+
