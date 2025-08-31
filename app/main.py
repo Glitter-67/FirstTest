@@ -59,10 +59,9 @@ async def on_message(message):
 
     message_list = [
         "お呼びですよ！",
-        "お呼びですにょ。",
-        "お呼びですぞ。"
+        "お呼びですにょ。"
     ]
-    w = [100,1,1]
+    w = [100,1]
     bot_message = random.choices(message_list, weights = w)[0]
 
     #botメッセージの送信
@@ -79,3 +78,4 @@ async def on_message(message):
 # ボットを実行
 
 bot.run(TOKEN)
+
