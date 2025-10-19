@@ -38,12 +38,14 @@ async def rate(my_content):
         return m.author == my_content.author and m.channel == my_content.channel and m.author != bot.user
 
     try:
-        msg = await bot.wait_for('message', check=check, timeout=10.0)
+        msg = await bot.wait_for('message', check=check, timeout=15.0)
         await my_content.send(f"プレイヤー名: {msg.content} を受け付けました。")
     except asyncio.TimeoutError:
         await my_content.send("タイムアウト")
         return
     rates = checkweb.getRate(msg.content)
+    if rates[0] = null:
+        await my_content.send("取得できませんでした。")
     await my_content.send("現在レート" + rates[0])
     await my_content.send("最高レート" + rates[1])
 
@@ -78,4 +80,5 @@ async def on_message(message):
 # ボットを実行
 
 bot.run(TOKEN)
+
 
