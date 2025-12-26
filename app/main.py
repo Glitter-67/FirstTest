@@ -40,8 +40,7 @@ async def rate(my_content):
     try:
         msg = await bot.wait_for('message', check=check, timeout=15.0)
         await my_content.send(f"プレイヤー名: {msg.content} を受け付けました。")
-    except KeyError:
-        await my_content.send("登録されていないプレイヤーです")
+    
     except asyncio.TimeoutError:
         await my_content.send("タイムアウト")
         return
@@ -80,6 +79,7 @@ async def on_message(message):
 # ボットを実行
 
 bot.run(TOKEN)
+
 
 
 
